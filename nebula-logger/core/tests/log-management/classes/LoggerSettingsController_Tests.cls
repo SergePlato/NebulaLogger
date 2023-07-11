@@ -355,7 +355,7 @@ private class LoggerSettingsController_Tests {
         // Using lastName (required field) instead of the optional field firstName
         String searchTerm = '%' + System.UserInfo.getLastName() + '%';
         Map<Id, User> expectedResultsById = new Map<Id, User>(
-            [SELECT Id, Name, Username, SmallPhotoUrl FROM User WHERE Name LIKE :searchTerm OR Username LIKE :searchTerm]
+            [SELECT Id, Name, Username, SmallPhotoUrl FROM User WHERE Name LIKE :searchTerm OR Username LIKE :searchTerm LIMIT 20]
         );
 
         List<LoggerSettingsController.SetupOwnerSearchResult> results = LoggerSettingsController.searchForSetupOwner('User', searchTerm);
